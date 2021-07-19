@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private static boolean checkPrime(int no)&apos; from &apos;PrimeChecker.main()&apos; to &apos;PrimeChecker&apos;&#x0A;- Original project: &apos;day-1-session1&apos;&#x0A;- Method name: &apos;checkPrime&apos;&#x0A;- Destination type: &apos;PrimeChecker&apos;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;checkPrime&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;{PrimeChecker.java" name="checkPrime" replace="false" selection="201 113" stamp="1626686302509" version="1.0" visibility="2"/>
+</session>
