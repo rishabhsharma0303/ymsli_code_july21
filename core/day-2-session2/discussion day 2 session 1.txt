@@ -1,0 +1,511 @@
+
+cheetsheet day 2: session 1
+__________________________
+
+class Foo{
+	public void Foo() {
+		System.out.println("it is a bad named method ");
+	}
+	
+	public Foo() {
+		System.out.println("it is a ctr");
+	}
+}
+
+public class DemoOnContr {
+	
+	public static void main(String[] args) {
+		
+		new Foo().Foo();
+	}
+
+}
+
+
+a sample class
+__________________
+
+class Account{
+	private int id;
+	private String name;
+	private double balance;
+	
+	public Account(int id, String name, double balance) {
+		this.id=id;
+		this.name=name;
+		this.balance=balance;
+	}
+	
+	//setter
+	public void setId(int id) {
+		this.id=id;
+	}
+	
+	//getter
+	public int getId() {
+		return id;
+	}
+	
+}
+
+auto gen getter and setter:
+____________________
+
+
+
+class Account{
+	
+	private int id;
+	private String name;
+	private double balance;
+	
+	public Account(int id, String name, double balance) {
+		this.id=id;
+		this.name=name;
+		this.balance=balance;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	
+	
+	
+}
+
+what is the problem:
+____________________
+
+you are voilating the BL (ie id and name can not be change)
+
+encap = data hinding + BL
+
+ie i need remove 
+
+public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+
+//1. what is the need of private ctr	:	YES
+//2. how to create an object if ctr is private
+
+//----------------------------------------------------
+// *Design pattern : is a prove way to write your code*
+// Singleton dp*
+//-----------------------------------------------------
+
+
+class Foo{
+	//ctr can be private
+	private Foo() {
+		System.out.println("i can be private");
+	}
+	private static Foo foo=new Foo();
+	
+	public void callMe() {
+		System.out.println("dare to call me!");
+	}
+	
+	public static Foo getFoo() {
+		return foo;
+	}
+}
+public class DemoOnContr {
+	
+	public static void main(String[] args) {
+		
+		//static method : for calling the static i dont need object!....from class i can access it!
+		Foo f=Foo.getFoo();
+		f.callMe();
+	}
+
+}
+
+
+
+class Foo{
+	private static Foo f=new Foo();
+	
+	private Foo() {
+		System.out.println("it is a private ctr");
+	}
+	public void callMe() {
+		System.out.println("call it");
+	}
+	public static Foo getFoo() {
+		return f;
+	}
+}
+public class DemoOnContr {
+	
+	public static void main(String[] args) {
+		
+		Foo f=Foo.getFoo();
+		//What is so special about this code
+		System.out.println(f.hashCode());
+		
+		Foo f2=Foo.getFoo();
+		System.out.println(f2.hashCode());
+		
+	}
+
+}
+
+
+
+static ctr is not allowed:
+____________________________
+
+
+class Foo{
+	
+	public static Foo() {
+		
+	}
+}
+
+
+
+C dont support function overloading
+__________________________________
+
+
+ctr overloading:YES
+
+class Foo {
+
+	//overloading
+	public Foo() {
+	}
+
+	//overloading ...
+	public Foo(int i) {
+
+	}
+}
+
+
+It is stupid to do overriding for ctr
+__________________________________
+Foo	Base
+|
+Bar	Drived
+
+class Foo {
+
+	//overloading
+	public Foo() {
+	}
+
+}
+
+class Bar extends Foo{
+	// this will you give error
+	public Foo() {
+	}
+}
+
+
+understanding this:
+___________________
+// what is "this" : ref to current object?
+class Emp{
+	private int id;
+	private String name;
+	
+	public Emp() {}
+
+	public Emp(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+	public void printEmp() {
+		System.out.println(this.id + " : "+ this.name);
+	}
+}
+
+public class DemoOnContr {
+
+	public static void main(String[] args) {
+		
+		
+//			Emp e=new Emp(2, "raj");
+//			e.printEmp();
+//			
+//			Emp e2=new Emp(29, "aman");
+//			e2.printEmp();
+	}
+}
+
+
+
+Ctr chaing: calling the ctr of same class
+__________________________________________
+class Emp {
+	private int id;
+	private String name;
+
+	public Emp() {
+		this(1, "foo");
+	}
+
+	public Emp(int id, String name) {
+	
+		this.id = id;
+		this.name = name;
+	}
+
+	public void printEmp() {
+		System.out.println(this.id + " : " + this.name);
+	}
+}
+
+
+What is the default modifier of ctr
+
+
+public 
+
+protected
+
+defualt "by default":	package level
+
+private 
+
+
+
+A DATA/METHOD CAN HAVE ANY VISISBLITY 
+BUT A CLASS (A TOP LEVEL CLASS*) CAN ONLY BE PUBLE / DEFAULT
+
+class A{
+
+	
+}
+
+
+
+ctr chaining : it will not work:
+___________________________________
+
+class Emp {
+	private int id;
+	private String name;
+
+	public Emp() {	
+		this(1, "foo");
+	}
+
+	public Emp(int id, String name) {
+		this();
+		this.id = id;
+		this.name = name;
+	}
+
+	public void printEmp() {
+		System.out.println(this.id + " : " + this.name);
+	}
+}
+
+
+
+class Object{
+}
+
+class Person{
+}
+
+class Emp extends Person {
+
+	public Emp(){
+		
+	}
+
+}
+
+
+
+	
+class Emp {
+	private int id;
+	private String name;
+	
+	private static int empCounter=0;
+	
+	public Emp() {	
+	}
+	
+	//there is no destructor in Java
+	
+	public Emp(String name) {
+		this.id = ++empCounter;
+		this.name = name;
+	}
+
+	// this is implicit pointer only for non static metohd 
+	public void printEmp() {
+		System.out.println(this.id + " : " + this.name);
+	}
+	
+	//static methdod dont have accessabltity of this
+	public static int getEmpCounter() {
+		return empCounter;
+	}
+}
+
+public class DemoOnContr {
+
+	public static void main(String[] args) {
+		Emp e=new Emp("raj");
+		
+		Emp e2=new Emp("emp");
+		
+		e.printEmp();
+		e2.printEmp();
+		
+		//The static method getEmpCounter() from the type Emp should be accessed in a static way
+		System.out.println(e.getEmpCounter());
+		System.out.println(e2.getEmpCounter());
+		
+	}
+}
+
+
+
+
+
+Init block:
+_______________
+
+
+
+
+
+
+
+call by value and ref:
+
+______________________
+
+POC: java dont support call by ref
+
+class Val{
+	private int i;
+	public Val(int i) {
+		this.i = i;
+	}
+	public int getI() {
+		return i;
+	}
+}
+
+public class DemoCallByValueVsRef {
+	
+	public static void main(String[] args) {
+		Val v1=new Val(2);
+		Val v2=new Val(4);
+		
+		System.out.println(v1.getI() + " : " + v2.getI());
+		
+		swap(v1, v2);
+		
+		System.out.println(v1.getI() + " : " + v2.getI());
+	}
+
+	private static void swap(Val v1, Val v2) {
+		Val temp;
+		temp=v1;
+		v1=v2;
+		v2=temp;
+	}
+}
+
+
+
+
+
+
+
+package com.ymlsi.day2.session1;
+
+class Val{
+	private int i;
+	public Val(int i) {
+		this.i = i;
+	}
+	public int getI() {
+		return i;
+	}
+	public void setI(int i) {
+		this.i = i;
+	}
+	
+	
+}
+
+public class DemoCallByValueVsRef {
+	
+	public static void main(String[] args) {
+		Val v1=new Val(2);
+		System.out.println("before change: "+ v1.getI());
+		changeIt(v1);
+		
+		System.out.println("after change: "+ v1.getI());
+	}
+
+	// when u are passing ref of an object actually u are passing copy of the ref
+	// u can chanage the state of the object BUT u can not nullify or re-assign the object
+	
+	//final means pointer can not be chage
+	//but object pointed by the poiter can be change
+	
+	private static void changeIt(final Val v1) {
+		//v1=new Val(5);
+		//v1.setI(v1.getI() +20);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

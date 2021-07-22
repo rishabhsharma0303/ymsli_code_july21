@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="Account"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="Emp"/>
+    <fullyQualifiedTypeName name="com.facerec.pesistance.Face"/>
+    <fullyQualifiedTypeName name="com.facerec.web.Face"/>
+    <fullyQualifiedTypeName name="com.ymlsi.day2.session1.Val"/>
 </qualifiedTypeNameHistroy>

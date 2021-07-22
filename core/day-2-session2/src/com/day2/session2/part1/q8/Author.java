@@ -1,0 +1,34 @@
+package com.day2.session2.part1.q8;
+
+public class Author {
+	private String name;
+	private String email;
+	private char gender;
+	
+	public Author(String name, String email, char gender) {
+		this.name = name;
+		this.email = email;
+		this.gender = gender;
+	}
+	public String getName() {
+		return name;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public char getGender() {
+		return gender;
+	}
+	
+	public void printAuthorDetails() {
+		System.out.println("-------author details--------------");
+		System.out.println("Name: "+ name);
+		System.out.println("email: "+ email);
+		System.out.println("gender:"+ gender);
+		System.out.println("-----------------------------------");
+	}
+}

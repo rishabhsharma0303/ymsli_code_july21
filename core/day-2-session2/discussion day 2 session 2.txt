@@ -1,0 +1,217 @@
+
+
+ 1		   1
+Book<>--------------Author
+
+
+
+ 1		   N
+Book<>--------------Author
+
+
+You can use two options:
+	1. array : array can not grow at run time
+	2. linkedlist: can grow at run time
+
+	array			vs 			linkedlist
+	_______________________________________________________
+	1. fixed size					not fixed
+	2. random access is fast			slow
+	3. del/add slow (shift)				fast (pointer manipulation)
+
+			
+
+
+		
+public class Book {
+	private String title;
+	private Author[] authors;
+	private double price;
+	private int qty;
+	
+}
+
+
+
+public class Author {
+	private String name;
+	private String email;
+	private char gender;
+}
+
+
+
+A pond have 4 ducks 2b and 2w?
+
+class Pond{
+	private String loc;
+	private boolean isTouristSpot;
+	private int counter=0;
+	
+	private Duck[]ducks=new Duck[4];
+
+	public void addDuck(Duck duck){
+		....
+	}
+
+}
+
+class Duck{
+	private String color;
+
+	///
+}
+
+	A person have red shirt
+	and has a pocket and pocket has a rynold blue pen
+
+class Person {
+	
+	public void changeDress(Shirt shirt ){
+
+	}
+
+}
+
+class Shirt{
+	String color;
+	
+}
+
+class Pocket{
+
+}
+
+
+class Pen{
+
+}
+----------------------------
+Stack:
+	pop()
+	push()
+	peek()
+	isEmpty()
+	isFull()
+	size()?
+___________________________
+
+public class Stack{
+	private final SIZE=10;
+	int arr[];
+	int top;
+	Stack(){
+		arr=new int[SIZE];
+		top=-1;
+	}
+
+	public int pop(){
+		if(!isEmpty()){
+			return arr[top--];
+		}
+		return -999;
+	}
+
+	public void push(int data){
+		if(!isFull()){
+			arr[++top]=data;	
+		}else{
+			///
+		}
+	}
+
+	peek()
+	public boolean isEmpty(){
+		return top==-1;
+	}
+
+	public boolean isFull(){
+		return top==SIZE-1;
+	}
+
+}
+
+
+stack working on int?
+
+i need a stack that can work on Book
+
+
+class Book{
+	int id;
+	int String title;
+	int double price;
+	///
+
+}
+
+public class Stack{
+	private final SIZE=10;
+	Book arr[];
+	int top;
+	Stack(){
+		arr=new Book[SIZE];
+		top=-1;
+	}
+
+	public Book pop(){
+		if(!isEmpty()){
+			return Book[top--];
+		}
+		return new Book(...);
+	}
+
+	public void push(Book book){
+		if(!isFull()){
+			arr[++top]=data;	
+		}else{
+			///
+		}
+	}
+
+	peek()
+	public boolean isEmpty(){
+		return top==-1;
+	}
+
+	public boolean isFull(){
+		return top==SIZE-1;
+	}
+
+}
+
+
+this still have a problem?
+
+Product
+
+Emp
+
+Template class in Java (Collection api)
+		Readymade ds in java
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
